@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="./chat.css"  type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/5f59ca6ad3.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="p-2">
+        <h1 class="text-center chatbot-heading">Meet our Chatbot</h1>
+        <img class="image" src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-dynamic-webapps/chatbot-bot-img.png" />
+        <div class="chat-container" id="chatContainer"></div>
+        <div class="d-flex flex-row justify-content-end">
+            <img class="image" src="https://d1tgh8fmlzexmh.cloudfront.net/ccbp-dynamic-webapps/chatbot-boy-img.png" />
+        </div>
+        <div class="d-flex flex-row justify-content-center fixed-bottom">
+            <input class="user-input" id="userInput" />
+            <button class="send-msg-btn" id="sendMsgBtn" onclick="sendMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+<script type="text/Javascript">
+    let chatbotMsgList = ["Hi", "Hey", "Good Morning", "Good Evening", "How can I help you?", "May I know your name", "My name is ChatBot", "This is built by human", "Thank You"];
+let chatContainer = document.getElementById("chatContainer");
+let userInput = document.getElementById("userInput");
+
+function sendMessage() {
+    let inputVal = userInput.value;
+
+    let container = document.createElement("div");
+    container.classList.add("msg-to-chatbot-container");
+    chatContainer.appendChild(container);
+
+    let spanEl = document.createElement("span");
+    spanEl.textContent = inputVal;
+    spanEl.classList.add("msg-to-chatbot");
+    container.appendChild(spanEl);
+
+    userInput.value = "";
+    getReplyFromChatBox();
+}
+
+function getReplyFromChatBox() {
+    let chatBoxLen = chatbotMsgList.length;
+    let replyMessage = chatbotMsgList[Math.ceil(Math.random() * chatBoxLen) - 1];
+
+    let replyCont = document.createElement("div");
+    replyCont.classList.add("msg-from-chatbot-container");
+    chatContainer.appendChild(replyCont);
+
+    let reply = document.createElement("span");
+    reply.textContent = replyMessage;
+    reply.classList.add("msg-from-chatbot");
+    replyCont.appendChild(reply);
+}
+</script>
+
+</body>
+
+</html>
